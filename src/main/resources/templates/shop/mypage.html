@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mypage</title>
+</head>
+<body>
+  <div> id
+       <p th:text="${member.memberId}" id="memberId" name="memberId">
+  </div>
+  <div> gender
+        <p th:text="${member.gender}" ></p>
+  </div>
+  <div>
+      email
+      <p th:text ="${member.email}"></p>
+  </div>
+    <div>
+        phoneNumber
+        <p th:text="${member.phoneNumber}"></p>
+    </div>
+<div>grade
+    <p th:text="${member.grade}"></p>
+</div>
+<div>
+    <button onclick="location.href='mypage.html'"
+        th:onclick="|location.href='@{myDelivery}'|"
+    >배송중인 상품</button>
+</div>
+<div>
+    <button onclick="location.href='mypage/update.html'"
+            th:onclick="|location.href='@{update/{memberId}(memberId=${member.memberId})}'|" type="button">
+        수정하기
+    </button>
+</div>
+</body>
+</html>

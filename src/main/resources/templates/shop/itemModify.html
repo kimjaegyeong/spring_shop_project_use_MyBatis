@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>itemModify</title>
+</head>
+<body>
+    <form action="main.html" th:action method="post">
+        아이템코드: <input type="text" th:value="${item.itemCode}"
+                      id="itemCode" name="itemCode">
+        아이템이름: <input type="text" th:value="${item.itemName}"
+                    id="itemName" name="itemName">
+        카테고리:<input type="text" th:value="${item.category}"
+                id="category" name="category">
+        가격: <input type="text" th:value="${item.price}"
+                id="price" name="price">
+        수량: <input type="text" th:value="${item.stock}"
+                id="stock" name="stock">
+        <button>
+            완료
+        </button>
+    </form>
+</body>
+</html>

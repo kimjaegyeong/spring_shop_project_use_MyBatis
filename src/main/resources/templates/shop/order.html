@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>orderPage</title>
+</head>
+<body>
+<form action="main.html" th:action method="post">
+    주문하기
+    <div >
+        <input type="text" th:value="${itemCode}" id="itemCode" name="itemCode">
+    </div>
+    <div>
+        주문자 성명: <input type="text" id="name" name="name" >
+    </div>
+    <div>
+        주문자 전화번호: <input type="text" id="phoneNumber" name="phoneNumber">
+    </div>
+    <div>
+        발송 주소: <input type="text" id="address" name="address">
+    </div>
+    <div>
+        수량: <input type="text" id="quantity" name="quantity">
+    </div>
+
+    <button> 확인 </button>
+</form>
+</body>
+</html>

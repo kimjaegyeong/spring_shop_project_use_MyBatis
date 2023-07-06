@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>save</title>
+</head>
+<body>
+<form th:action method="post">
+  <div>
+    <label for="itemCode">상품코드</label>
+    <input type="text" id="itemCode" name="itemCode" placeholder="아이템코드를 입력해주세요.">
+  </div>
+  <div>
+    <label for="itemName">상품명</label>
+    <input type="text" id="itemName" name="itemName"  placeholder="아이템이름을 입력해주세요.">
+  </div>
+  <div>
+    <label for="category">카테고리</label>
+      <input type="text" id="category" name="category" placeholder="카테고리를 지정해주세요.">
+  </div>
+  <div>
+    <label for="price">가격</label>
+    <input type="text" id="price" name="price"  placeholder="가격을 입력해주세요.">
+  </div>
+  <div>
+    <label for="stock">재고</label>
+    <input type="text" id="stock" name="stock" placeholder="재고수량을 입력해주세요.">
+  </div>
+  <button type="submit">
+    확인
+  </button>
+</form>
+</body>
+</html>

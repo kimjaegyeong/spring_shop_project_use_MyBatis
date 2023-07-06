@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>update-mypage</title>
+</head>
+<body>
+<form action="main.html"th:action="@{/shop/mypage/update}" method="post">
+    <div>
+        <input type="text" id="memberId" name="memberId"
+               th:value="${member.memberId}" th:placeholder="${member.memberId}">
+    </div>
+    <div>
+        <input type="text" id="password" name="password"
+               th:value="${member.password}" th:placeholder= "${member.password}" >
+    </div>
+    <div>
+        <input type="text" id="gender" name="gender"
+               th:value="${member.gender}" th:placeholder="${member.gender}">
+    </div>
+    <div>
+        <input type="text" id="email" name="email"
+               th:value="${member.email}" th:placeholder="${member.email}">
+    </div>
+    <div>
+        <input type="text" id="phoneNumber" name="phoneNumber"
+               th:value="${member.phoneNumber}" th:placeholder="${member.phoneNumber}">
+    </div>
+    <div>
+        <input type="text" id="grade" name="grade" th:value="${member.grade}"readonly>
+    </div>
+    <div>
+        <button>정보수정</button>
+    </div>
+</form>
+</body>
+</html>

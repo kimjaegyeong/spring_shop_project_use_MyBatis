@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>itemDetail</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td> 아이템코드 </td>
+        <td> 아이템 이름 </td>
+        <td> 카테고리 </td>
+        <td> 가격 </td>
+        <td> 수량 </td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td th:text="${item.itemCode}" th:value="${item.itemCode}"></td>
+        <td th:text="${item.itemName}" th:value="${item.itemName}"></td>
+        <td th:text="${item.category}" th:value="${item.category}"></td>
+        <td th:text="${item.price}" th:value="${item.price}"></td>
+        <td th:text="${item.stock}" th:value="${item.stock}" ></td>
+    </tr>
+    </tbody>
+
+</table>
+<div>
+    <button th:onclick="|location.href='/shop/main'|"> 메인으로 </button>
+</div>
+
+<div th:if= "${session.loginMember != null}">
+    <div>
+        <button th:onclick="|location.href='@{/shop/item/order/{itemCode}(itemCode=${item.itemCode})}'|"> 주문
+        </button>
+    </div>
+
+    <div>
+        <button th:onclick="|location.href='@{/shop/item/modify/{itemCode}(itemCode=${item.itemCode})}'|">
+        수정
+        </button>
+    </div>
+    <div>
+        <button th:onclick="|location.href='@{/shop/item/remove/{itemCode}(itemCode=${item.itemCode})}'|">
+            삭제
+        </button>
+    </div>
+</div>
+
+</body>
+</html>

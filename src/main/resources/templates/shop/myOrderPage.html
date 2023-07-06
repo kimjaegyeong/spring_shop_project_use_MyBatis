@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>myOrderPage</title>
+</head>
+<body>
+  <div>
+  배송코드
+    <p th:text="${delivery.getDeliveryCode()}"></p>
+  </div>
+  배송지
+  <div>
+    <p th:text="${delivery.getAddress()}"></p>
+  </div>
+  수신자번호
+  <div>
+    <p th:text="${delivery.getPhoneNumber()}"></p>
+  </div>
+  주문상품
+  <div>
+    <p th:text="${delivery.getName()}"></p>
+    <div></div>
+    <p th:text="${delivery.getItems()}"></p>
+  </div>
+  <div>
+    주문자
+    <p th:text="${delivery.getMemberId()}"></p>
+  </div>
+  <div>
+    주문수량
+    <p th:text="${delivery.getQuantity()}"></p>
+  </div>
+  <div>
+    주문상태
+    <p th:text="${delivery.getState()}"></p>
+  </div>
+</body>
+</html>

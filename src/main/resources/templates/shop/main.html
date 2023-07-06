@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+        <title>shop main</title>
+    </head>
+    <body>
+    <div>
+
+        <button
+            onclick="location.href='main.html'"
+            th:onclick="|location.href='@{/shop/itemList}'|"
+        >
+        상품목록
+        </button>
+    </div>
+        <div th:if="${session.loginMember == null}">
+            <div>
+                <button
+                        onclick="location.href='login.html'"
+                        th:onclick="|location.href='@{/shop/login}'|"
+                        type="button">로그인</button>
+            </div>
+
+            <div>
+                <button
+                        onclick="location.href='sign-up.html'"
+                        th:onclick="|location.href='@{/shop/sign-up}'|"
+                        type="button">회원가입</button>
+            </div>
+        </div>
+
+        <div th:if= "${session.loginMember != null}">
+            <div>
+                <button
+                        onclick="location.href=''"
+                        th:onclick="|location.href='@{/shop/mypage/{memberId}(memberId=${session.loginMember})}'|"
+
+                        type="button">마이페이지</button>
+            </div>
+
+            <div>
+                <button
+                        onclick="location.href='main.html'"
+                        th:onclick="|location.href='@{/shop/logout/{memberId}(memberId=${session.loginMember})}'|"
+                        type="button">로그아웃</button>
+            </div>
+            <div>
+                <button
+                        onclick="location.href='main.html'"
+                        th:onclick="|location.href='@{/shop/save}'|"
+                > 상품추가
+                </button>
+
+            </div>
+
+        </div>
+    </body>
+</html>
