@@ -11,9 +11,15 @@ import java.util.Map;
 @Repository
 public class MemoryMemberRepository implements MemberRepository {
     private static  Map<String ,Member> memberMap = new HashMap<>();
+    public static double memberIdKey= 1D;
     @Override
     public String save(Member member) {
+
+        member.setMemberKey(memberIdKey);
+        System.out.println(memberIdKey);
         memberMap.put(member.getMemberId(), member);
+        memberIdKey++;
+
         return member.getMemberId();
     }
 

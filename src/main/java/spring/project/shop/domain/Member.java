@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Member {
-
+    private Double memberKey;
     private String memberId;
     private String password;
     private String gender;

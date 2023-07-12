@@ -60,7 +60,7 @@ public class MemoryItemRepositoryTest {
     public void 아이템_삭제_테스트(){
         Item item = new Item("000001","파란여름원피스","원피스",18000L,1000L);
         itemRepository.save(item);
-        String itemCode =itemRepository.remove(item);
+        String itemCode =itemRepository.remove(item.getItemCode());
         Assertions.assertNull(itemRepository.find(itemCode));
     }
 }
