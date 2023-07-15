@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Item {
+    private String itemKey;
     private String itemCode;
     private String itemName;
     private String category;
@@ -17,12 +18,12 @@ public class Item {
     public Item(){
 
     }
-    public Item(String itemCode, String itemName, String category){
+    public Item(String itemCode, String itemName, String category, long price, long stock){
         this.itemCode= itemCode;
         this.itemName= itemName;
         this.category= category;
-        this.price= 100000000000L;
-        this.stock= 0L;
+        this.price= price;
+        this.stock= stock;
     }
     //식별코드, 이름, 분류, 가격, 수량
 }

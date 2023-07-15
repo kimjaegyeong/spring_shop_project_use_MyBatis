@@ -1,0 +1,38 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.project.shop.mapper.MemberMapper">
+    <resultMap id="memberVOResultMap" type="spring.project.shop.domain.Member">
+        <id property="memberKey" column="member_key"></id>
+        <result property="memberId" column="member_id"/>
+        <result property="password" column="password"/>
+        <result property="gender" column="gender"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="email" column="email"/>
+        <result property="grade" column="grade"/>
+    </resultMap>
+
+    <select id="find" resultMap="memberVOResultMap">
+        SELECT * FROM member WHERE member_id = #{memberId}
+    </select>
+
+    <select id="findAll" resultMap="memberVOResultMap">
+        SELECT * FROM member;
+    </select>
+
+    <insert id="save">
+        INSERT INTO member(member_id,password, gender, phone_number, email, grade)
+        VALUES(#{memberId}, #{password}, #{gender}, #{phoneNumber}, #{email} ,#{grade})
+    </insert>
+
+    <update id="update" >
+        UPDATE member
+        SET member_id= #{memberId},password= #{password},  gender= #{gender}, phone_number= #{phoneNumber}, email= #{email}, grade= #{grade}
+        WHERE member_id = #{memberId}
+    </update>
+
+    <delete id="remove">
+        DELETE FROM member WHERE member_id= #{memberId}
+    </delete>
+</mapper>

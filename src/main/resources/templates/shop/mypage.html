@@ -32,6 +32,14 @@
             th:onclick="|location.href='@{update/{memberId}(memberId=${member.memberId})}'|" type="button">
         수정하기
     </button>
+
+</div>
+
+  <div>
+    <button onclic="location.href='shop/main'"
+            th:onclick="|location.href='@{remove/{memberId}(memberId=${member.memberId})}'|" type="button">
+    회원탈퇴
+    </button>
 </div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package spring.project.shop.config;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,7 +17,8 @@ import javax.sql.DataSource;
 
 @Configuration
 // 패키지명
-@MapperScan(value = "spring.project.shop", sqlSessionFactoryRef = "SqlSessionFactory")
+@MapperScan(value = "spring.project.shop.mapper", sqlSessionFactoryRef = "SqlSessionFactory")
+@RequiredArgsConstructor
 public class MyBatisConfig {
 
     @Value("${spring.datasource.mapper-locations}")

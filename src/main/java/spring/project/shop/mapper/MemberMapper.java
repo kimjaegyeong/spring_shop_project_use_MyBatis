@@ -1,7 +1,6 @@
-package spring.project.shop.mapperinterface;
+package spring.project.shop.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 import spring.project.shop.domain.Member;
 
 import java.util.List;
@@ -14,10 +13,10 @@ public interface MemberMapper {
 
     public Member find(String id);
 
-    public List<Map<String,Object>> findAll();
+    public List<Member> findAll();
 
-    public String remove(Member member);
+    public void remove(Member member);
 
-    public String update(Member member);
+    public void update(Member member);
 
 }

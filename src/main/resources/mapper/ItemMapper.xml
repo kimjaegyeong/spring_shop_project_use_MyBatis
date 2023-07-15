@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.project.shop.mapper.ItemMapper">
+    <resultMap id="ItemVOResultMap" type="spring.project.shop.domain.Item">
+        <id property="itemKey" column="item_key"></id>
+        <result property="itemCode" column="item_code"></result>
+        <result property="itemName" column="item_name"></result>
+        <result property="category" column="category"></result>
+        <result property="price" column="price"></result>
+        <result property="stock" column="stock"></result>
+    </resultMap>
+
+    <select id="find" resultMap="ItemVOResultMap">
+        SELECT * FROM ITEM WHERE ITEM_CODE = #{ItemCode}
+    </select>
+
+    <select id="findAll" resultMap="ItemVOResultMap">
+        SELECT * FROM ITEM
+    </select>
+
+    <insert id="save">
+        INSERT INTO ITEM(ITEM_CODE, ITEM_NAME, CATEGORY, PRICE, STOCK)
+        VALUES(#{itemCode}, #{itemName}, #{category}, #{price}, #{stock})
+    </insert>
+
+    <update id="update">
+        UPDATE ITEM
+        SET ITEM_CODE= #{itemCode},ITEM_NAME= #{itemName}, CATEGORY= #{category}, PRICE= #{price},STOCK= #{stock}
+        WHERE ITEM_CODE = #{itemCode}
+    </update>
+
+    <delete id="remove">
+        DELETE FROM ITEM WHERE item_code= #{itemCode}
+    </delete>
+</mapper>

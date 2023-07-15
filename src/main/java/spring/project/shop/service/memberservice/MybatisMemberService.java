@@ -2,11 +2,11 @@ package spring.project.shop.service.memberservice;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.project.shop.domain.Member;
-import spring.project.shop.mapperinterface.MemberMapper;
 import spring.project.shop.repository.memberrepository.MybatisMemberRepository;
+
+import java.util.List;
 
 
 @Service
@@ -69,8 +69,8 @@ public class MybatisMemberService implements MemberService{
         return member;
     }
 
-    public void findAll(){
-        mybatisMemberRepository.findAll();
+    public List<Member> findAll(){
+        return mybatisMemberRepository.findAll();
     }
 
 }
