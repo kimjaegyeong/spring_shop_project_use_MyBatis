@@ -3,6 +3,7 @@ package spring.project.shop.service.wishlistservice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import spring.project.shop.domain.Item;
+import spring.project.shop.domain.Wish;
 import spring.project.shop.repository.wishlistRepository.MemoryWishlistRepository;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class MemoryWishlistService implements WishlistService{
     public final MemoryWishlistRepository memoryWishlistRepository;
 
     @Override
-    public int save(String itemCode) {
-        int save_ok = memoryWishlistRepository.save(itemCode);
+    public int save(String itemCode, String memberId) {
+        int save_ok = memoryWishlistRepository.save(itemCode,memberId);
         return save_ok;
     }
 
@@ -25,8 +26,8 @@ public class MemoryWishlistService implements WishlistService{
     }
 
     @Override
-    public List<Item> findAll() {
-        List<Item> wishlist = memoryWishlistRepository.findAll();
+    public List<Wish> findAll(String memberId) {
+        List<Wish> wishlist = memoryWishlistRepository.findAll(memberId);
         return wishlist;
     }
 }

@@ -38,7 +38,7 @@
     </div>
 
     <div>
-        <button th:onclick="|location.href='@{/shop/item/addwishlist}'|"> 장바구니 추가
+        <button th:onclick="|location.href='@{/shop/item/addwishlist/{itemCode}(itemCode=${item.itemCode})}'|"> 장바구니 추가
         </button>
     </div>
 

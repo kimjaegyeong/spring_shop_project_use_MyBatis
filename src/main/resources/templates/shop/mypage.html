@@ -22,6 +22,12 @@
 <div>grade
     <p th:text="${member.grade}"></p>
 </div>
+  <div>
+      <button onclick="location.href='mypage.html'"
+              th:onclick="|location.href='@{showWishlist}'|" type="button">
+          위시리스트보기
+      </button>
+  </div>
 <div>
     <button onclick="location.href='mypage.html'"
         th:onclick="|location.href='@{myDelivery}'|"
