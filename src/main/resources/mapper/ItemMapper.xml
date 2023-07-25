@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="find" resultMap="ItemVOResultMap">
-        SELECT * FROM ITEM WHERE ITEM_CODE = #{ItemCode}
+        SELECT * FROM ITEM WHERE ITEM_CODE = #{itemCode}
     </select>
 
     <select id="findAll" resultMap="ItemVOResultMap">

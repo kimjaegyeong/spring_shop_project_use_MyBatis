@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
+@AllArgsConstructor
 public class Member {
     private Double memberKey;
     private String memberId;
@@ -26,16 +26,6 @@ public class Member {
         this.gender= gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
-    }
-
-    public Member(Double memberKey, String memberId, String password, String gender, String phoneNumber, String email, String grade){
-        this.memberKey= memberKey;
-        this.memberId = memberId;
-        this.password = password;
-        this.gender= gender;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.grade = grade;
     }
 
 }

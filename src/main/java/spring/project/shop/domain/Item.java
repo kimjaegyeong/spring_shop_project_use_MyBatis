@@ -25,6 +25,13 @@ public class Item {
         this.price= price;
         this.stock= stock;
     }
+
+    @Override
+    public String toString() {
+        return  "Sub [itemKey=" + itemKey + ", itemCode=" + itemCode + ", itemName=" + itemName +
+                ", category=" + category +", price=" + price + ", stock=" + stock + "]";
+    }
+
     //식별코드, 이름, 분류, 가격, 수량
 }
 

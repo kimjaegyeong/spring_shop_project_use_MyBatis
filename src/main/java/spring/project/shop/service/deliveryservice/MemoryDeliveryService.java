@@ -5,13 +5,14 @@ import org.springframework.stereotype.Service;
 import spring.project.shop.domain.Delivery;
 import spring.project.shop.enums.DeliveryState;
 import spring.project.shop.repository.deliveryRepository.DeliveryRepository;
+import spring.project.shop.repository.deliveryRepository.MemoryDeliveryRepository;
 
 import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MemoryDeliveryService implements DeliveryService{
 
-    public final DeliveryRepository deliveryRepository;
+    public final MemoryDeliveryRepository deliveryRepository;
     @Override
     public String saveDelivery(Delivery delivery) {
 

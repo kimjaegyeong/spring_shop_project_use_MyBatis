@@ -19,6 +19,8 @@ import javax.sql.DataSource;
 // 패키지명
 @MapperScan(value = "spring.project.shop.mapper", sqlSessionFactoryRef = "SqlSessionFactory")
 @RequiredArgsConstructor
+
+
 public class MyBatisConfig {
 
     @Value("${spring.datasource.mapper-locations}")
@@ -29,6 +31,7 @@ public class MyBatisConfig {
     public DataSource DataSource() {
         return DataSourceBuilder.create().build();
     }
+
 
 
     @Bean(name = "SqlSessionFactory")

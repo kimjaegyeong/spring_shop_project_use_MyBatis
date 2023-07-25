@@ -13,7 +13,7 @@ import java.util.List;
 public class Delivery {
     Long deliveryKey;
     String deliveryCode;
-    List<Item> Items;
+    List<Item> items;
     String memberId; //주문자
     String address; //발신자
     DeliveryState state; 
@@ -39,6 +39,13 @@ public class Delivery {
         this.phoneNumber = phoneNumber;
         this.name= name;
         this.quantity= quantity;
+    }
+    @Override
+    public String toString(){
+
+        return  "Sub [deliveryKey=" + deliveryKey + ", deliveryCode=" + deliveryCode + "," +
+                " Item=" + items.get(0) + "," + " memberId" + memberId + " address" + address +","
+        +" state" +state +  ", " + " phoneNumber" + phoneNumber +","+name +"," + " quantity" + quantity + "]";
     }
 }
 

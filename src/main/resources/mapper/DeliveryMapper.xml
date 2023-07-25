@@ -1,0 +1,53 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.project.shop.mapper.DeliveryMapper">
+    <resultMap id="ItemVOResultMap" type="spring.project.shop.domain.Item">
+        <id property="itemKey" column="item_key"></id>
+        <result property="itemCode" column="item_code"></result>
+        <result property="itemName" column="item_name"></result>
+        <result property="category" column="category"></result>
+        <result property="price" column="price"></result>
+        <result property="stock" column="stock"></result>
+    </resultMap>
+
+    <resultMap id="DeliveryVOResultMap" type="spring.project.shop.domain.Delivery">
+        <id property="deliveryKey" column="delivery_key"></id>
+        <result property="deliveryCode" column="delivery_code"></result>
+        <result property="memberId" column="member_id"></result>
+        <result property="address" column="address"></result>
+        <result property="phoneNumber" column="phone_number"></result>
+        <result property="state" column="state"
+                typeHandler="spring.project.shop.enums.DeliveryStateHandler"></result>
+                <!--typeHandler 지정 또는 javatype= "enum클래스" -->
+                <!-- 이번같은 경우, enum에 지정된 값을 바로 쓰기 때문에 javatype을 사용해도 되지만,
+                    만약 ADMIN("001") 처럼 db에 저장될 값과 java에서 쓰는 값이 다른 경우 handler를 커스터마이징해서
+                    처리할 수 있다.
+                -->
+
+        <result property="name" column="name"></result>
+        <result property="quantity" column="quantity"></result>
+
+        <collection property="items" column="item_code" select="selectItem"></collection>
+    </resultMap>
+    <select id="selectItem" resultMap="ItemVOResultMap">
+        select ITEM.* from DELIVERY right join ITEM on DELIVERY.ITEM_CODE= ITEM.ITEM_CODE where ITEM.ITEM_CODE=#{itemCode} limit 1;
+    </select>
+
+    <select id="selectState" resultType="spring.project.shop.enums.DeliveryState">
+        select state from delivery where delivery_code = #{deliveryCode}
+    </select>
+
+
+    <select id="selectDelivery" resultMap="DeliveryVOResultMap">
+        select delivery_key, delivery_code, member_id, address, phone_number, name,quantity,state, item_code from DELIVERY WHERE DELIVERY_CODE = #{DeliveryCode}
+    </select>
+
+    <select id="saveDelivery">
+        insert into DELIVERY(DELIVERY_CODE, ITEM_CODE, MEMBER_ID , PHONE_NUMBER, STATE, ADDRESS, NAME, QUANTITY)
+        VALUES<foreach collection="items" item="item">
+            (#{deliveryCode},#{item.itemCode},#{memberId},#{phoneNumber},#{state},#{address},#{name},#{quantity});
+</foreach>
+    </select>
+</mapper>
