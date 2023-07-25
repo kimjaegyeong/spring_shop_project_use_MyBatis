@@ -31,16 +31,22 @@
     <td>
       수량
     </td>
+    <td>
+      취소
+    </td>
   </tr>
   <tr th:each="delivery: ${deliveries}">
-    <td><a href="" th:text="${delivery.deliveryCode}"></a></td>
-    <td th:text="${delivery.items}"></td>
+    <td><a href="main.html"
+           th:href="@{/shop/mypage/order/{deliveryCode}(deliveryCode=${delivery.deliveryCode})}"
+           th:text="${delivery.deliveryCode}"></a></td>
+    <td th:text="${delivery.items}" ></td>
     <td th:text="${delivery.memberId}"></td>
     <td th:text="${delivery.address}"></td>
     <td th:text="${delivery.state}"></td>
     <td th:text="${delivery.phoneNumber}"></td>
     <td th:text="${delivery.name}"></td>
     <td th:text="${delivery.quantity}"></td>
+    <td> <a th:href="@{/shop/mypage/order/cancel/{deliveryCode}(deliveryCode=${delivery.deliveryCode})}"> 주문취소</a></td>
 </table>
 </body>
 </html>

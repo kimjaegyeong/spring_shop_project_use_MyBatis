@@ -34,17 +34,19 @@ public class MybatisDeliveryRepository implements DeliveryRepository{
 
     @Override
     public List<Delivery> findByuser(String memberId) {
-        return null;
+
+        return deliveryMapper.selectDeliveryById(memberId);
     }
 
     @Override
-    public List<Delivery> findAll() {
-        return null;
+    public List<Delivery> findAll()  {
+        return deliveryMapper.selectAllDelivery();
     }
 
     @Override
     public String update(Delivery delivery) {
-        return null;
+        deliveryMapper.updateState(delivery);
+        return delivery.getDeliveryCode();
     }
 
     @Override
@@ -52,6 +54,9 @@ public class MybatisDeliveryRepository implements DeliveryRepository{
         return null;
     }
 
+    public void updateItemStock(String itemCode, int itemStock){
+       deliveryMapper.updateItemStock(itemCode, itemStock);
+    }
     @Override
     public void storeClear() {
 

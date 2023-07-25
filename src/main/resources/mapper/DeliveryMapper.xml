@@ -16,8 +16,8 @@
         <id property="deliveryKey" column="delivery_key"></id>
         <result property="deliveryCode" column="delivery_code"></result>
         <result property="memberId" column="member_id"></result>
-        <result property="address" column="address"></result>
         <result property="phoneNumber" column="phone_number"></result>
+        <result property="address" column="address"></result>
         <result property="state" column="state"
                 typeHandler="spring.project.shop.enums.DeliveryStateHandler"></result>
                 <!--typeHandler 지정 또는 javatype= "enum클래스" -->
@@ -41,13 +41,29 @@
 
 
     <select id="selectDelivery" resultMap="DeliveryVOResultMap">
-        select delivery_key, delivery_code, member_id, address, phone_number, name,quantity,state, item_code from DELIVERY WHERE DELIVERY_CODE = #{DeliveryCode}
+        select delivery_key, delivery_code, member_id,  phone_number, address, name,quantity,state, item_code from DELIVERY WHERE DELIVERY_CODE = #{DeliveryCode}
     </select>
 
-    <select id="saveDelivery">
+    <insert id="saveDelivery">
         insert into DELIVERY(DELIVERY_CODE, ITEM_CODE, MEMBER_ID , PHONE_NUMBER, STATE, ADDRESS, NAME, QUANTITY)
         VALUES<foreach collection="items" item="item">
             (#{deliveryCode},#{item.itemCode},#{memberId},#{phoneNumber},#{state},#{address},#{name},#{quantity});
 </foreach>
+    </insert>
+
+    <select id="selectAllDelivery" resultMap="DeliveryVOResultMap">
+        select * from delivery ;
     </select>
+
+    <select id="selectDeliveryById" resultMap="DeliveryVOResultMap">
+        select* from delivery where member_id =#{memberId};
+    </select>
+
+    <update id="updateItemStock">
+        update delivery join item on delivery.item_code=item.item_code set item.stock= #{itemStock} where delivery.item_code=#{itemCode};
+    </update>
+
+    <update id="updateState">
+        update delivery set state = #{state} where delivery_code = #{deliveryCode}
+    </update>
 </mapper>

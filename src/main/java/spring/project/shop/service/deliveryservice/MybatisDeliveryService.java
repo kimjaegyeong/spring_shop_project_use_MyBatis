@@ -26,7 +26,7 @@ public class MybatisDeliveryService{
         Item item = mybatisDeliveryRepository.findItem(itemCode); // delivery table에서 item 참조해서 item 정보 끌어오기
         if(item.getStock() - userDelivery.getQuantity() < 0){
             log.warn("수량부족");
-            return itemCode;
+            return "수량부족";
         }
 
         userDelivery.setDeliveryCode(Integer.toString(sq));
@@ -49,7 +49,7 @@ public class MybatisDeliveryService{
 
 
     public List<Delivery> userDelivery(String memberId) {
-        return null;
+        return mybatisDeliveryRepository.findByuser(memberId);
     }
 
 
@@ -60,13 +60,31 @@ public class MybatisDeliveryService{
 
 
     public List<Delivery> allDelivery() {
-        return null;
+        return mybatisDeliveryRepository.findAll();
     }
 
 
     public String cancelDelivery(Delivery delivery) {
-        return null;
+        if(delivery.getState()==DeliveryState.CANCEL){
+            return "already_cancel";
+        }
+        List<Item> items=delivery.getItems();
+        for(Item item: items){
+            updateItemStock(item,delivery.getQuantity());
+        }
+
+        Delivery updateDelivery = delivery;
+        updateDelivery.setState(DeliveryState.CANCEL);
+        mybatisDeliveryRepository.update(updateDelivery);
+
+        return delivery.getDeliveryCode();
     }
+
+    public void updateItemStock(Item item, int quantity){
+        String itemCode = item.getItemCode();
+        int itemStock = (int) (item.getStock() + quantity);
+        mybatisDeliveryRepository.updateItemStock(itemCode, itemStock);
+    };
 
 
     public String removeDelivery(String deliveryCode) {

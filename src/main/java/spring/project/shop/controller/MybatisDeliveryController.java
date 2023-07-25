@@ -34,30 +34,40 @@ public class MybatisDeliveryController {
 
     @PostMapping("/item/order/{itemCode}")
     public String itemOrder(@PathVariable String itemCode, Delivery delivery, HttpSession httpSession, Model model){
-        Delivery userDelivery = new Delivery(delivery.getName(),delivery.getPhoneNumber(),delivery.getAddress(),delivery.getQuantity());
+        Delivery userDelivery = new Delivery(delivery.getName(),delivery.getAddress(),delivery.getPhoneNumber(),delivery.getQuantity());
         String deliveryCode =mybatisDeliveryService.saveDelivery(itemCode,userDelivery,httpSession);
-
-        return "redirect:/shop/mypage/order/"+deliveryCode;
+        if(deliveryCode.equals("수량부족")){
+            return "redirect:/shop/itemList";
+        }
+            return "redirect:/shop/mypage/order/" + deliveryCode;
 
     }
-//
-//    @GetMapping("/All/orderList")
-//    public String allOrderList(Model model){
-//        List<Delivery> deliveries =memoryDeliveryService.allDelivery();
-//        model.addAttribute("deliveries", deliveries);
-//        return "shop/allOrderList";
-//    }
-//
-//    @GetMapping("/mypage/myDelivery")
-//    public String myDelivery(Model model, HttpSession httpSession){
-//        String userId= httpSession.getAttribute("loginMember").toString();
-//        log.warn(userId);
-//
-//        List<Delivery> deliveries = memoryDeliveryService.userDelivery(userId);
-//        log.warn(String.valueOf(deliveries.size()));
-//        model.addAttribute("deliveries", deliveries);
-//        return "shop/myDelivery";
-//    }
 
+    @GetMapping("/All/orderList")
+    public String allOrderList(Model model){
+        List<Delivery> deliveries =mybatisDeliveryService.allDelivery();
+        model.addAttribute("deliveries", deliveries);
+        return "shop/allOrderList";
+    }
 
+    @GetMapping("/mypage/myDelivery")
+    public String myDelivery(Model model, HttpSession httpSession){
+        String userId= httpSession.getAttribute("loginMember").toString();
+        log.warn(userId);
+
+        List<Delivery> deliveries = mybatisDeliveryService.userDelivery(userId);
+        log.warn(String.valueOf(deliveries.size()));
+        model.addAttribute("deliveries", deliveries);
+        return "shop/myDelivery";
+    }
+
+    @GetMapping("/mypage/order/cancel/{deliveryCode}")
+    public String deliveryCancel(@PathVariable String deliveryCode){
+            Delivery remove_delivery = mybatisDeliveryService.showDelivery(deliveryCode);
+            String result=mybatisDeliveryService.cancelDelivery(remove_delivery);
+            if(result.equals("already_cancel")){
+                log.warn("이미 취소된 상품입니다.");
+            }
+            return "redirect:/shop/mypage/myDelivery";
+    }
 }
